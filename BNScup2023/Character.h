@@ -37,7 +37,7 @@ public:
 
 		//体力表示
 		Box{ axis.x,axis.y + 1,axis.z ,1.5,0.25,0.25 }.draw(ColorF{ 1.0,0.0,0.0 });
-		Box{ axis.x - (1.5 - 1.5 * HP / maxHP) / 2.0,axis.y + 1,axis.z ,1.5 * HP / maxHP,0.26,0.26 }.draw(ColorF{ 0.0,1.0,0.0 });
+		Box{ axis.x - (1.5 - 1.5 * HP / maxHP) / 2.0,axis.y + 1,axis.z ,1.5 * HP / maxHP,0.26,0.26 }.draw(ColorF{ 0.0,0.0,1.0 });
 
 
 		if (GrounHandle(Boxes)) {//着地したら残りジャンプ数リセット
@@ -592,7 +592,7 @@ public:
 	int left_jump_num = max_jump;
 	float movexz;
 	int direction = 0;
-	float kagenti = 20.0 / 2500.0;
+	float kagenti = 40.0 / 2500.0;
 	int direction_change = 0;
 	float speed = rand() % 200 / 2500.0 + kagenti;
 	//攻撃ヒット音
@@ -742,7 +742,7 @@ public:
 
 		//Friendに触れたらFriendの体力減少
 		if (shape.intersects(Friend->shape)) {
-			Friend->HP -= 0.8;//0.5;
+			Friend->HP -= 0.5;//0.5;
 		}
 
 		//プレイヤーの攻撃が当たるとダメージ

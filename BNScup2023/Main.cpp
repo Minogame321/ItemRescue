@@ -486,7 +486,7 @@ void Main()
 
 				font(U"Friend HP").draw(0, 100, ColorF(1.0, 1.0, 1.0));
 				Rect{ 250,130,150,20 }.draw(ColorF(1.0, 0.0, 0.0));
-				Rect{ 250,130,150 * (int)Friend.HP / (int)Friend.maxHP,20 }.draw(ColorF(0.0, 1.0, 0.0));
+				Rect{ 250,130,150 * (int)Friend.HP / (int)Friend.maxHP,20 }.draw(ColorF(0.0, 0.0, 1.0));
 
 
 				font(U"Heal Item").draw(1400, 0, ColorF(1.0, 1.0, 1.0));
