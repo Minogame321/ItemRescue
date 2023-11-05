@@ -742,7 +742,7 @@ public:
 
 		//Friendに触れたらFriendの体力減少
 		if (shape.intersects(Friend->shape)) {
-			Friend->HP -= 0.5;//0.5;
+			Friend->HP -= 0.65;//0.5;
 		}
 
 		//プレイヤーの攻撃が当たるとダメージ
