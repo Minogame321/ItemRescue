@@ -510,20 +510,20 @@ public:
 	void spawn(axis3D axis) {//指定座標に相手を生成して配列に入れる
 
 		int x = rand() % 100;
-		if (x <= 20) {
+		if (x <= 10) {
 			HealItemObject item = HealItemObject(axis);
 			item.bulletBox = new PhysicsObject(item.boxBox, btVector3(axis.x, axis.y, axis.z), 1);
 			physicsworld->addObject(item.bulletBox,1);
 			
 			itemarray << item;
 		}
-		else if (x > 20 && x <= 40) {
+		else if (x > 10 && x <= 20) {
 			BombItemObject item = BombItemObject(axis);
 			item.bulletBox = new PhysicsObject(item.boxBox, btVector3(axis.x, axis.y, axis.z), 1);
 			itemarray << item;
 			physicsworld->addObject(item.bulletBox, 1);
 		}
-		else if (x > 40 && x <= 99) {
+		else if (x > 20 && x <= 99) {
 			CoinItemObject item = CoinItemObject(axis);
 			item.bulletBox = new PhysicsObject(item.boxBox, btVector3(axis.x, axis.y, axis.z), 1);
 			itemarray << item;
