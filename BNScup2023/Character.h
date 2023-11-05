@@ -22,7 +22,7 @@ public:
 	float movexz;
 	int direction = 0;
 	int direction_change = 0;
-	int Friend_seed=0;
+	int Friend_seed = 0;
 	int attachdirection = 0;//移動
 
 	Texture friendTexture{ Image {U"example/texture/FriendTexture.png"} }; // 移動モーション
@@ -39,7 +39,7 @@ public:
 		Box{ axis.x,axis.y + 1,axis.z ,1.5,0.25,0.25 }.draw(ColorF{ 1.0,0.0,0.0 });
 		Box{ axis.x - (1.5 - 1.5 * HP / maxHP) / 2.0,axis.y + 1,axis.z ,1.5 * HP / maxHP,0.26,0.26 }.draw(ColorF{ 0.0,1.0,0.0 });
 
-		
+
 		if (GrounHandle(Boxes)) {//着地したら残りジャンプ数リセット
 			left_jump_num = max_jump;
 			vy = 0;
@@ -90,10 +90,10 @@ public:
 		bulletsphere->getRigidBody()->setCenterOfMassTransform(newTransform);
 		//移動処理「axis,bulletの座標の同期」
 
-		for (int i = 0; i < Boxes.size()-4; i++)
+		for (int i = 0; i < Boxes.size() - 4; i++)
 		{
 
-			if (shape.intersects(Boxes[i].atarihanteishape)&& !(axis.y>= Boxes[i].axis.y + Boxes[i].height / 2)) {
+			if (shape.intersects(Boxes[i].atarihanteishape) && !(axis.y >= Boxes[i].axis.y + Boxes[i].height / 2)) {
 				btVector3 upDirection = btVector3(0, 20, 0);
 				upDirection.setX(bulletsphere->getRigidBody()->getLinearVelocity().getX());
 				upDirection.setZ(bulletsphere->getRigidBody()->getLinearVelocity().getZ());
@@ -102,7 +102,7 @@ public:
 			}
 		}
 
-		
+
 		display();//表示
 		getDrawTexture();
 		drawMotion();
@@ -331,7 +331,7 @@ public:
 
 	}
 	void resultdisplay(Array<BoxObject> box) {//リザルト画面の行動のコード(落下反射の繰り返し)
-		axis.y= (box[0].axis.y + box[0].height / 2 + Periodic::Jump0_1(1s) * 1)+0.2;
+		axis.y = (box[0].axis.y + box[0].height / 2 + Periodic::Jump0_1(1s) * 1) + 0.2;
 		display();
 
 		attachdirection = 4;
@@ -350,7 +350,7 @@ public:
 
 	void drawMotion(float shadowY) {
 		//btVector3 btPos = bulletsphere->getRigidBody()->getWorldTransform().getOrigin();
-		Vec3 position(axis.x, axis.y +0.4, axis.z);
+		Vec3 position(axis.x, axis.y + 0.4, axis.z);
 		Vec3 shadowPos(axis.x, shadowY, axis.z);
 		const ScopedRenderStates3D sampler{ SamplerState::ClampNearest, BlendState::OpaqueAlphaToCoverage };
 		spriteMesh.draw(position, Quaternion::RotateY(0), playerTexture(sequence[drawX] * 32, drawY * 32, 32, 32));
@@ -449,7 +449,7 @@ public:
 	Texture bombtexture{ Image{ U"example/texture/bomb.png" } };
 	Model coin{ U"example/obj/crystal2.obj" };
 	void Run(PlayerObject* Player) {
-		shadowMesh.draw(Vec3{axis.x,axis.y-height/2,axis.z}, Quaternion::RotateY(0), ColorF{0, 0, 0});
+		shadowMesh.draw(Vec3{ axis.x,axis.y - height / 2,axis.z }, Quaternion::RotateY(0), ColorF{ 0, 0, 0 });
 		angle += move_angle * radian;//回転させる
 		if (angle > pi * 2) { angle -= pi * 2; };//高制限つけないと壊れる
 		rotation = Quaternion::RotateY(angle);
@@ -498,7 +498,7 @@ public:
 
 class ItemManager {//アイテムのスポーンをしてくれる
 public:
-	ItemManager(PhysicsWorld *physicsworld) {
+	ItemManager(PhysicsWorld* physicsworld) {
 		this->physicsworld = physicsworld;
 	}
 	Array<ItemObject> itemarray;//ここにアイテムを入れていく
@@ -513,8 +513,8 @@ public:
 		if (x <= 15) {
 			HealItemObject item = HealItemObject(axis);
 			item.bulletBox = new PhysicsObject(item.boxBox, btVector3(axis.x, axis.y, axis.z), 1);
-			physicsworld->addObject(item.bulletBox,1);
-			
+			physicsworld->addObject(item.bulletBox, 1);
+
 			itemarray << item;
 		}
 		else if (x > 15 && x <= 30) {
@@ -534,7 +534,7 @@ public:
 	void draw(PlayerObject* Player) {//描画は回転しながら表示
 		for (int i = 0; i < itemarray.size(); i++) {
 			btVector3 position = itemarray[i].bulletBox->getRigidBody()->getWorldTransform().getOrigin();
-			itemarray[i].axis = axis3D{(float)position.getX(),(float)position.getY(),(float)position.getZ()};
+			itemarray[i].axis = axis3D{ (float)position.getX(),(float)position.getY(),(float)position.getZ() };
 			itemarray[i].Run(Player);
 			if (itemarray[i].shape.intersects(Player->shape)) {
 				if (itemarray[i].type == 2) { coinaudio.play(); }//取得音
@@ -594,7 +594,7 @@ public:
 	int direction = 0;
 	float kagenti = 20.0 / 2500.0;
 	int direction_change = 0;
-	float speed = rand() % 200 / 2500.0+kagenti;
+	float speed = rand() % 200 / 2500.0 + kagenti;
 	//攻撃ヒット音
 	Audio hitaudio{ U"example/hit.mp3" };
 
@@ -602,7 +602,7 @@ public:
 
 	Texture friendTexture{ Image {U"example/texture/EnemyTexture.png"} }; // 移動モーション
 	Mesh spriteMesh{ MeshData::TwoSidedPlane(SizeF{ 1.5, 1.5 }).rotate(Quaternion::RotateX(-90_deg)) };
-	
+
 
 
 	void Walljump() {//ジャンプについての動きをまだ決めていない
@@ -638,7 +638,7 @@ public:
 		Box{ axis.x,axis.y + 1,axis.z ,1.5,0.25,0.25 }.draw(ColorF{ 1.0,0.0,0.0 });
 		Box{ axis.x - (1.5 - 1.5 * HP / maxHP) / 2.0,axis.y + 1,axis.z ,1.5 * HP / maxHP,0.26,0.26 }.draw(ColorF{ 0.0,1.0,0.0 });
 
-	
+
 		float substractaxissize = axissize(subaxis(axis, Friend->axis));//Friendへ近づくように
 		int randomteisuu;//皆密集しないように動きにランダム性を加えて集まらないようにする
 		float virtualx;
