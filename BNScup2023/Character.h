@@ -644,7 +644,7 @@ public:
 		float virtualx;
 		float virtualz;
 		axis3D move;
-		if (substractaxissize < radius * 6) {//近ければ座標を追っていく
+		if (substractaxissize < radius * 8) {//近ければ座標を追っていく
 			move = subaxis(axis, Friend->axis);
 		}
 		else {//遠ければFriendの座標付近へ向かう
