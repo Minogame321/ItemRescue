@@ -43,3 +43,7 @@ Google Driveに実行ファイルも置いてあります。ダウンロード�
 	コインがたまに取れない
 	ステージの追加
 	ゲームのルール説明
+
+
+https://github.com/Minogame321/ItemRescue/assets/128656868/0a0747b7-3177-402f-96c8-ce6279ca6339
+
