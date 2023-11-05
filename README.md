@@ -10,9 +10,9 @@ bnscup2023で制作した3Dアクションゲームです。
 　GithubからVisual Studioのソリューションをクローンして、ビルドしてください。
 		https://github.com/Minogame321/ItemRescue
 		　ビルドしてプレイする際にはBulletPhysicsを各自ダウンロードしてパスを通してください
-  		参考：https://qiita.com/tas9n/items/522312d04013f3512f33
+  			参考：https://qiita.com/tas9n/items/522312d04013f3512f33
   		
-	Google Driveに実行ファイルも置いてあります。ダウンロードして.exeを実行してください(逐次更新予定)
+Google Driveに実行ファイルも置いてあります。ダウンロードして.exeを実行してください(逐次更新予定)
 		https://drive.google.com/drive/u/1/folders/1fNyk1Vg-v5sgJ1nlQidYWGAdUghsattj (更新日202311/5 14:00)
 
 タイトルが出てきたら、START BUTTONをクリック。そしたら、一番左の石の上に乗るとゲームスタート。
