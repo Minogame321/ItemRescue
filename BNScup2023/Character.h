@@ -24,7 +24,8 @@ public:
 	int direction_change = 0;
 	int Friend_seed = 0;
 	int attachdirection = 0;//移動
-
+	Mesh shadowMesh{ MeshData::Disc(1.0) };
+	float shadowY = axis.y - radius;
 	Texture friendTexture{ Image {U"example/texture/FriendTexture.png"} }; // 移動モーション
 	Mesh spriteMesh{ MeshData::TwoSidedPlane(SizeF{ 1.5, 1.5 }).rotate(Quaternion::RotateX(-90_deg)) };
 
@@ -32,6 +33,7 @@ public:
 
 
 	void Run(Array<BoxObject>Boxes) {//行動決定
+		
 		bulletsphere->getRigidBody()->setLinearVelocity(btVector3(0, bulletsphere->getRigidBody()->getLinearVelocity().getY(), 0));//斜面で起きる速度対策
 		bulletsphere->getRigidBody()->setActivationState(DISABLE_DEACTIVATION);
 
@@ -42,8 +44,10 @@ public:
 
 		if (GrounHandle(Boxes)) {//着地したら残りジャンプ数リセット
 			left_jump_num = max_jump;
+			shadowY = axis.y - radius;
 			vy = 0;
 		}
+		shadowMesh.draw(Vec3{ axis.x,shadowY,axis.z }, Quaternion::RotateY(0), ColorF{ 0, 0, 0 });
 		unsigned int Friend_seed = static_cast<unsigned int>(std::time(nullptr));
 		std::srand(Friend_seed);
 		if (direction_change == 0) { direction = rand() % 4; }//4方向ランダムに行動変更
@@ -442,7 +446,7 @@ public:
 		can_use = true;//使用可能（falseだと画面から消えて、座標を通っても拾えない）
 	}
 	float move_angle;
-	Mesh shadowMesh{ MeshData::Disc(1) };
+	Mesh shadowMesh{ MeshData::Disc(0.5) };
 	bool can_use;
 	int type = -1;//回復か、爆弾か
 	Texture kusuritexture{ Image{ U"example/texture/kusuri.png" } };
@@ -742,7 +746,7 @@ public:
 
 		//Friendに触れたらFriendの体力減少
 		if (shape.intersects(Friend->shape)) {
-			Friend->HP -= 0.65;//0.5;
+			Friend->HP -= 0.325;//0.5;
 		}
 
 		//プレイヤーの攻撃が当たるとダメージ
