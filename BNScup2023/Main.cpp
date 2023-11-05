@@ -173,7 +173,7 @@ void Main()
 	//足場と床の情報（ここに座標、大きさを追加すれば、勝手に足場と床が増える）
 	Array<Boxinfo> box_informations11 = { {axis3D(0.0, -1.0, 0.0), axis3D(field_range11, 2.0, field_range11)},
 										{axis3D(-38.0, 0.0, 38.0), axis3D(52.0,5.0,50.0)},{axis3D(-45.0, 0.0, 60.0), axis3D(27.0,12.0,25.0)}
-										,{axis3D(50.0, 0.0, 60.0), axis3D(54.0,6.0,50.0)}
+										,{axis3D(50.0, 0.0, 60.0), axis3D(30.0,6.0,30.0)}
 	};
 	int box_num11 = box_informations11.size();
 
@@ -187,7 +187,9 @@ void Main()
 
 	//木の情報（座標と高さを入れるだけで木が生える）
 	Array<Treeinfo> Treeinformations11 = { { axis3D(-20.0, 0.0, -25.0),2.5},{ axis3D(-30.0, 0.0, -20.0),2.5},{ axis3D(-60.0, 0.0, -20.0),2.5},
-		{ axis3D(-45.0, 0.0, -45.0),2.5},{ axis3D(10.0, 0.0, -30.0),2.5},{ axis3D(25.0, 0.0, 0.0),2.5}, };//座標とスケールをぶち込む。スケールは2以上にしないように調整
+		{ axis3D(-45.0, 0.0, -45.0),2.5},{ axis3D(10.0, 0.0, -30.0),2.5},{ axis3D(25.0, 0.0, 0.0),2.5},
+		{ axis3D(-25.0, 0.0, -20.0),2.5},{ axis3D(-25.0, 0.0, 5.0),2.5},
+	};//座標とスケールをぶち込む。スケールは2以上にしないように調整
 	int tree_num11 = Treeinformations11.size();
 
 	//木のあたり判定は幹の部分のみ
@@ -229,7 +231,7 @@ void Main()
 	}
 
 
-	Array<Coneinfo> Coneinformations = { {axis3D{3.5, 0.0, 0}, 10, 6.5 } };
+	Array<Coneinfo> Coneinformations = { {axis3D{3.5, 0.0, 0}, 10, 6.5 },{axis3D{40, 0.0, -20}, 10, 8.4 } };
 	Array<ConeObject> Cones11;
 	{
 		for (int i = 0; i < Coneinformations.size(); i++)
