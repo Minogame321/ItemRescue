@@ -510,20 +510,20 @@ public:
 	void spawn(axis3D axis) {//指定座標に相手を生成して配列に入れる
 
 		int x = rand() % 100;
-		if (x <= 10) {
+		if (x <= 15) {
 			HealItemObject item = HealItemObject(axis);
 			item.bulletBox = new PhysicsObject(item.boxBox, btVector3(axis.x, axis.y, axis.z), 1);
 			physicsworld->addObject(item.bulletBox,1);
 			
 			itemarray << item;
 		}
-		else if (x > 10 && x <= 20) {
+		else if (x > 15 && x <= 30) {
 			BombItemObject item = BombItemObject(axis);
 			item.bulletBox = new PhysicsObject(item.boxBox, btVector3(axis.x, axis.y, axis.z), 1);
 			itemarray << item;
 			physicsworld->addObject(item.bulletBox, 1);
 		}
-		else if (x > 20 && x <= 99) {
+		else if (x > 30 && x <= 99) {
 			CoinItemObject item = CoinItemObject(axis);
 			item.bulletBox = new PhysicsObject(item.boxBox, btVector3(axis.x, axis.y, axis.z), 1);
 			itemarray << item;
@@ -592,7 +592,7 @@ public:
 	int left_jump_num = max_jump;
 	float movexz;
 	int direction = 0;
-	float kagenti = 40.0 / 2500.0;
+	float kagenti = 20.0 / 2500.0;
 	int direction_change = 0;
 	float speed = rand() % 200 / 2500.0+kagenti;
 	//攻撃ヒット音
@@ -644,7 +644,7 @@ public:
 		float virtualx;
 		float virtualz;
 		axis3D move;
-		if (substractaxissize < radius * 4) {//近ければ座標を追っていく
+		if (substractaxissize < radius * 6) {//近ければ座標を追っていく
 			move = subaxis(axis, Friend->axis);
 		}
 		else {//遠ければFriendの座標付近へ向かう
