@@ -44,7 +44,7 @@ public:
 			left_jump_num = max_jump;
 			vy = 0;
 		}
-		Friend_seed += 100;
+		unsigned int Friend_seed = static_cast<unsigned int>(std::time(nullptr));
 		std::srand(Friend_seed);
 		if (direction_change == 0) { direction = rand() % 4; }//4方向ランダムに行動変更
 		direction_change += 1;//方向変更までの値を貯める
