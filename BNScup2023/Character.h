@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include"Shapes.h"
 #include"Figure.h"
 #include <Siv3D.hpp>
@@ -442,12 +442,14 @@ public:
 		can_use = true;//使用可能（falseだと画面から消えて、座標を通っても拾えない）
 	}
 	float move_angle;
+	Mesh shadowMesh{ MeshData::Disc(1) };
 	bool can_use;
 	int type = -1;//回復か、爆弾か
 	Texture kusuritexture{ Image{ U"example/texture/kusuri.png" } };
 	Texture bombtexture{ Image{ U"example/texture/bomb.png" } };
 	Model coin{ U"example/obj/crystal2.obj" };
 	void Run(PlayerObject* Player) {
+		shadowMesh.draw(Vec3{axis.x,axis.y-height/2,axis.z}, Quaternion::RotateY(0), ColorF{0, 0, 0});
 		angle += move_angle * radian;//回転させる
 		if (angle > pi * 2) { angle -= pi * 2; };//高制限つけないと壊れる
 		rotation = Quaternion::RotateY(angle);
@@ -461,7 +463,7 @@ public:
 		if (can_use) {
 			if (type == 0) { display(kusuritexture); }
 			else if (type == 1) { display(bombtexture); }
-			else if (type == 2) { coin.draw(Vec3{ axis.x,axis.y,axis.z }, rotation); }
+			else if (type == 2) { display(); coin.draw(Vec3{ axis.x,axis.y,axis.z }, rotation); }
 		}
 	}
 };
