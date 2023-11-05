@@ -50,5 +50,7 @@ Google Driveに実行ファイルも置いてあります。ダウンロード�
 	ゲームのルール説明
 
 
-https://github.com/Minogame321/ItemRescue/assets/128656868/0a0747b7-3177-402f-96c8-ce6279ca6339
+
+https://github.com/Minogame321/ItemRescue/assets/128656868/06542b80-2574-408a-9cc5-9fa9352b1b41
+
 
